@@ -1,4 +1,3 @@
-
 'use strict';
 
 function refresh() {
@@ -12,7 +11,7 @@ function startSimulation() {
 
     // Matter.Engine
     const engine = Matter.Engine.create();
-    //engine.world.gravity.y = 0;
+    // engine.world.gravity.y = 9.8;
     // Matter.Render
     const renderer = Matter.Render.create({
         engine: engine,
@@ -23,14 +22,17 @@ function startSimulation() {
             wireframes: false
         }
     });
+    const Bodies = Matter.Bodies, Body = Matter.Body;
 
     // The Bodies
-    const bigBox = Matter.Bodies.rectangle(300, 474, 150, 150, {
+    const bigBox = Bodies.rectangle(300, 474, 150, 150, {
         inertia: Infinity,
         frictionAir: 0,
-        friction: 0.00002
+        friction: getValueElementById('ofriction')
     });
-    const Bodies = Matter.Bodies, Body = Matter.Body;
+
+
+
 
     // The Walls
     const floor = Bodies.rectangle(400, 590, 800, 77, {
@@ -59,21 +61,29 @@ function startSimulation() {
     Matter.Render.run(renderer);
 
 
-
     document.getElementById('the-box').addEventListener('click', function () {
-        const speed = 0.02;
+        Body.setMass(bigBox, getValueElementById('omass'));
+        bigBox.friction =  getValueElementById('ofriction');
+
+        const speed = getValueElementById('pvelocity'); // 0.02
         const angle = 0;
         const ball = Bodies.circle(100, 500, 5, {
-            friction: 0.05,
-            frictionAir: 0.05,
+            friction: 0,
+            frictionAir: 0,
             restitution: 0.2
         });
-        Body.setMass(ball, 0.1);
+        Body.setMass(ball, getValueElementById('pmass')); // 0.1
         Matter.World.add(engine.world, ball)
         let vector = Matter.Vector.create(Math.cos(angle) * speed, Math.sin(angle) * speed);
         Body.applyForce(ball, ball.position, vector);
-        setTimeout(() => { Matter.World.remove(engine.world, ball); }, 500);
+        setTimeout(() => {
+            Matter.World.remove(engine.world, ball);
+        }, 1500);
     });
 
+    function getValueElementById(id) {
+        return Number(document.getElementById(id).value);
+    }
 }
+
 

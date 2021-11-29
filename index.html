@@ -6,21 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MatterJS</title>
     <script src="./node_modules/matter-js/build/matter.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./proj01.js"></script>
-    <link href="stye.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
-<body onload="startSimulation()">
-<div class="container">
-    <canvas id="scene" class="char"></canvas>
-    <div class="controls">
-        <div onclick="refresh()">
-            <p>[ Reloadss ]</p>
+<body onload="startSimulation()" class="container-fluid">
+<div class="row">
+    <div class="col-7">
+        <canvas id="scene"></canvas>
+    </div>
+    <div class="col-5">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    Colisiones
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-start">
+                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                             aria-orientation="vertical">
+                            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                                    aria-selected="true">Proyectil
+                            </button>
+                            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-profile" type="button" role="tab"
+                                    aria-controls="v-pills-profile" aria-selected="false">Bloque
+                            </button>
+                        </div>
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                 aria-labelledby="v-pills-home-tab">
+                                <form class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="pmass" class="form-label">Masa</label>
+                                        <input type="number" class="form-control" id="pmass" value="1">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pvelocity" class="form-label">Velocidad</label>
+                                        <input type="number" class="form-control" id="pvelocity" value="0.2">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                 aria-labelledby="v-pills-profile-tab">
+                                <form class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="omass" class="form-label">Masa</label>
+                                        <input type="number" class="form-control" id="omass" value="100">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ofriction" class="form-label">F. rozamiento</label>
+                                        <input type="number" class="form-control" id="ofriction" value="0.002">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-center">
+                    <div id="the-box" class="btn btn-danger">Disparar</div>
+                    <div onclick="refresh()" class="btn btn-secondary ms-3"> Reiniciar
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="the-box">The box</div>
     </div>
 </div>
-
 
 
 </body>

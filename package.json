@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/julnarot/physics-examples-matterjs#readme",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "matter-js": "^0.17.1"
   }
 }
