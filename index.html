@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatterJS</title>
+    <script src="./node_modules/matter-js/build/matter.min.js"></script>
+    <script src="./proj01.js"></script>
+    <link href="stye.css">
+</head>
+
+<body onload="startSimulation()">
+<div class="container">
+    <canvas id="scene" class="char"></canvas>
+    <div class="controls">
+        <div onclick="refresh()">
+            <p>[ Reloadss ]</p>
+        </div>
+        <div id="the-box">The box</div>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>
